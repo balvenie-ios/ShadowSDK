@@ -14,9 +14,20 @@ App使用者分布分析SDK
 - 增加以下代碼到 `AppDelegate.swift`.
 
 	```swift
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool { 
-		// 加入下面這行，site 跟 package 請至 Shadow 後台創建
-		shadow.configure(site: "test", package: "test01")
-		return true
+	import UIKit
+	import ShadowSDK /// <== 增加 import
+	
+	@main
+	class AppDelegate: UIResponder, UIApplicationDelegate {
+	    let shadow = Shadow() /// <== 增加宣告
+	    
+	    ...
+	
+	    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	        shadow.configure(site: "bf", package: "flashflight") /// <== 增加呼叫 configure 並帶入 site 跟 package
+	        
+	        ...
+	    }
+	
 	}
 	```
