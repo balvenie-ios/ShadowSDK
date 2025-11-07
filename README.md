@@ -24,7 +24,7 @@ App使用者分布分析SDK
 	    ...
 	
 	    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-	        shadow.configure(site: "bf", package: "flashflight") /// <== 增加呼叫 configure 並帶入 site 跟 package
+	        shadow.configure(site: "test", package: "test01") /// <== 增加呼叫 configure 並帶入 site 跟 package
 	        
 	        ...
 	    }
