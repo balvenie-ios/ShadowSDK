@@ -62,3 +62,15 @@ App使用者分布分析SDK
     @end
 	```
 - 請先按下 Cmd + B 編譯一次。Xcode 需要編譯過一次 Swift 模組，才會產生對應的 .h 檔。
+- 如果出現 Linker 錯誤(如下)，請於 objc 專案內新增任一個 Swift 檔案，讓 Xcode 自動產生 bridge
+
+	```
+	ld: warning: Could not find or use auto-linked library 'swiftCompatibility56': library 'swiftCompatibility56' not found
+	
+	ld: warning: Could not find or use auto-linked library 'swiftCompatibilityConcurrency': library 'swiftCompatibilityConcurrency' not found
+	```
+ 
+	- 在你的 Objective-C 專案 中，點擊 Cmd + N 新增檔案。
+	- 選擇 Swift File，檔名隨便取（例如：Dummy.swift）。
+	- 當 Xcode 彈出視窗詢問："Would you like to create an Objective-C bridging header?" 時，
+	- 請務必點擊 「Create Bridging Header」。
