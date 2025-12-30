@@ -3,8 +3,8 @@
 
 import PackageDescription
 
-let version = "1.0.7"
-let checksum = "1d034011cea3fabd27c890bdb860b6807b696dc24adc0786a55e531e140fccf2"
+let version = "1.0.8"
+let checksum = "9b3beec3e99b97af57ddee01bb121cdc7bcb94520e3f0c963da758358867b7bd"
 
 let package = Package(
     name: "ShadowSDK",
