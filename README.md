@@ -17,14 +17,16 @@ App使用者分布分析SDK
 	import UIKit
 	import ShadowSDK /// <== 增加 import
 	
-	@main
 	class AppDelegate: UIResponder, UIApplicationDelegate {
 	    let shadow = Shadow() /// <== 增加宣告
 	    
 	    ...
 	
 	    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-	        shadow.configure(site: "test", package: "test01") /// <== 增加呼叫 configure 並帶入 site 跟 package
+	        // 增加呼叫 configure 並帶入 site, package 以及 completion closure
+	        shadow.configure(site: "test", package: "test01") { isSuccess in
+	            print("Shadow configure result: \(isSuccess)")
+	        }
 	        
 	        ...
 	    }
@@ -37,14 +39,14 @@ App使用者分布分析SDK
 - Build Settings 設定： 請確保專案設定中的 `Defines Module` 設為 YES
 - 增加以下代碼到 `AppDelegate.m`
 
-	```
+	```objective-c
  	#import "AppDelegate.h"
     @import ShadowSDK; /// <== 1. 使用 Module Import 語法
 
     @interface AppDelegate ()
     @property (nonatomic, strong) Shadow *shadow; /// <== 2. 增加屬性宣告
-    @end
-
+    @end 
+    
     @implementation AppDelegate
 
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -53,8 +55,10 @@ App使用者分布分析SDK
         self.shadow = [[Shadow alloc] init];
         
         // 4. 呼叫配置方法
-        // 注意：Swift 的 configure(site:package:) 在 ObjC 中會轉換為以下名稱
-        [self.shadow configureWithSite:@"test" package:@"test01"];
+        // 注意：Swift 的 configure(site:package:completion:) 在 ObjC 中會轉換為以下名稱
+        [self.shadow configureWithSite:@"test" package:@"test01" completion:^(BOOL isSuccess) {
+             NSLog(@"Shadow configure result: %d", isSuccess);
+        }];
         
         return YES;
     }
